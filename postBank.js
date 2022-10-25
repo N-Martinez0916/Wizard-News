@@ -15,6 +15,8 @@ const data = [
     { id: 14, upvotes: 10, title: "How to tell which spell used on a bug?", content: "Question: Are ther any non-jinx incantations available to detect which spell used on a bug?", name: "Lupin", date: new Date() }
   ];
 
+  
+
 const list = () => {
   return [...data] // Notice that we're returning a copy of the array, so the original data is safe. This is called 'immutability'.
 }; 
