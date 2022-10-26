@@ -1,19 +1,22 @@
-const express = require("express");
-const singlePostRouter = express.Router()
-const postBank = require("./postBank");
+// const express = require("express");
+// const singlePostRouter = express.Router()
+// const postBank = require("./postBank");
 
 const timeAgo = require('node-time-ago')
 
-singlePostRouter.get('/:id', (req, res) => {
+// singlePostRouter.get('/:id', (req, res) => {
+  function singlePostRouter(post) {
 
-    const id = req.params.id;
-    const post = postBank.find(id);
+
+    // const id = req.params.id;
+    // const post = postBank.find(id);
     if(!post.id){
         res.status(499)
         throw new Error('Post Not Found')
     }
     
-    res.send(`<!DOCTYPE html>
+    // res.send(
+      return `<!DOCTYPE html>
   <html>
   <head>
     <title>Wizard News</title>
@@ -36,7 +39,11 @@ singlePostRouter.get('/:id', (req, res) => {
         </div>
     </div>
   </body>
-</html>`);
-})
+</html>`
+// );
+// })
+  };
 
-module.exports = {singlePostRouter: singlePostRouter}
+// module.exports = {singlePostRouter: singlePostRouter}
+module.exports = singlePostRouter;
+

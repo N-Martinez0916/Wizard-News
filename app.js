@@ -1,9 +1,11 @@
 const express = require("express");
 const postBank = require("./postBank");
-const {allPostsRouter} = require("./AllPosts")
-const {singlePostRouter} = require("./SinglePost")
+// const {allPostsRouter} = require("./AllPosts")
+// const {singlePostRouter} = require("./SinglePost")
 const morgan = require("morgan");
-const { request } = require("express");
+// const { request } = require("express");
+const allPostsRouter = require("./AllPosts")
+const singlePostRouter = require("./SinglePost")
 
 const PORT = 1337;
 
@@ -13,19 +15,44 @@ app.use(morgan("dev"));
 
 app.use(express.static("public"));
 
+// app.get("/", (req, res) => {
+//   res.send('Welcome to the home page');
+// });
+
+
+
+// app.use('/posts', allPostsRouter)
+// app.use('/post', singlePostRouter)
+
+// app.use('*', (error, req, res, next)=>{
+//   console.log('status',error.status)
+//   res.send(error.message)
+//   console.log('error message', error.message)
+// })
 app.get("/", (req, res) => {
-  res.send('Welcome to the home page');
+  const posts = postBank.list()
+  res.send(allPostsRouter(posts));
 });
 
+app.get('/posts/:id', (req, res) => {
+  const id = req.params.id;
+  const post = postBank.find(id);
+  res.send(singlePostRouter(post))
+});
 
+app.get('*', (req, res) => {
+  res.status(404).send({
+    error: '404 - not found',
+    message: "no route found for the request url",
+  });
+});
 
-app.use('/posts', allPostsRouter)
-app.use('/post', singlePostRouter)
-
-app.use('*', (error, req, res, next)=>{
-  console.log('status',error.status)
-  res.send(error.message)
-  console.log('error message', error.message)
+app.use((error, req, res, next)=>{
+  console.log('there is an error', error)
+  if (res.statusCode < 400 ) {
+    res.status(500);
+  }
+  res.send({error: error.message, message: error.message})
 })
 
 app.listen(PORT, () => {

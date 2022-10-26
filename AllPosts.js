@@ -1,12 +1,12 @@
-const express = require("express");
-const allPostsRouter = express.Router()
-const postBank = require("./postBank");
+// const express = require("express");
+// const allPostsRouter = express.Router()
+// const postBank = require("./postBank");
 
 const timeAgo = require('node-time-ago')
 
-  allPostsRouter.get('/', (req, res) =>{
-
-    const posts = postBank.list()
+  // allPostsRouter.get('/', (req, res) =>{
+    function allPostsRouter (posts) {
+    // const posts = postBank.list()
     const html = `<!DOCTYPE html>
   <html>
   <head>
@@ -36,8 +36,10 @@ const timeAgo = require('node-time-ago')
   </body>
 </html>`;
 
-  res.send(html);
-  })
-  
+  // res.send(html);
+  // })
+  return html;
+};
 
-module.exports = {allPostsRouter: allPostsRouter}
+// module.exports = {allPostsRouter: allPostsRouter}
+module.exports = allPostsRouter
