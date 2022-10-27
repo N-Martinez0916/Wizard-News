@@ -5,7 +5,7 @@ const morgan = require("morgan");
 const allPostsRouter = require("./AllPosts")
 const singlePostRouter = require("./SinglePost")
 
-const PORT = 1337;
+const { PORT = 1337 } = process.env;
 
 const app = express();
 
