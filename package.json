@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start:dev": "nodemon app.js",  
-    "start": "node app.js"  
+    "start:dev": "nodemon app.js",
+    "start": "node app.js",
+    "client:build": "react-scripts build"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +16,19 @@
   "dependencies": {
     "express": "^4.18.2",
     "morgan": "^1.10.0",
-    "node-time-ago": "^1.0.0"
+    "node-time-ago": "^1.0.0",
+    "react-scripts": "^5.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
